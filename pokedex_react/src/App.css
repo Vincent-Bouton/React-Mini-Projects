@@ -1,0 +1,9 @@
+.card {
+  background: #888888;
+  width: 20%;
+}
+.card-title {
+  color: blue;
+  font-size: 1.2em;
+  text-align: center;
+}
