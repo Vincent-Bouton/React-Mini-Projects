@@ -45,12 +45,13 @@ class TodoList extends Component {
   }
   render() {
     return (
-      <div>
+      <div className="TodoList">
         <div>
-          <h1>Todo List</h1>
-          <p>A simple React Todo List App</p>
+          <h1>
+            Todo List<span>A simple React Todo List App</span>
+          </h1>
         </div>
-        <div>
+        <ul>
           {this.state.todoList.map(elem => {
             return (
               <Todo
@@ -65,7 +66,7 @@ class TodoList extends Component {
               />
             );
           })}
-        </div>
+        </ul>
         <NewTodoForm submitTodo={this.submitTodo} />
       </div>
     );

@@ -21,7 +21,7 @@ class NewTodoForm extends Component {
   }
   render() {
     return (
-      <form>
+      <form className="NewTodoForm">
         <label htmlFor="Todo">New Todo</label>
         <input
           value={this.state.todo}
