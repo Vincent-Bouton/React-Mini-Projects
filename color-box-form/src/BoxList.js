@@ -13,7 +13,6 @@ class BoxList extends Component {
     this.removeBox = this.removeBox.bind(this);
   }
   newBox(width, height, color) {
-    console.log("coucou");
     this.setState(ele => {
       return {
         box: [
