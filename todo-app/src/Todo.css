@@ -1,0 +1,10 @@
+.done {
+  color: gray;
+  text-decoration: line-through;
+}
+.flex {
+  display: flex;
+}
+li {
+  list-style-type: none;
+}

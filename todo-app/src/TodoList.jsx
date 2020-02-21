@@ -11,11 +11,12 @@ class TodoList extends Component {
     this.submitTodo = this.submitTodo.bind(this);
     this.removeTodo = this.removeTodo.bind(this);
     this.editTodo = this.editTodo.bind(this);
+    this.doneTask = this.doneTask.bind(this);
   }
   submitTodo(tar) {
     this.setState(st => {
       return {
-        todoList: [...st.todoList, { todo: tar, id: uuid() }]
+        todoList: [...st.todoList, { todo: tar, id: uuid(), done: false }]
       };
     });
   }
@@ -28,6 +29,15 @@ class TodoList extends Component {
     const updateTodo = this.state.todoList.map(elem => {
       if (elem.id === todoId) {
         return { ...elem, todo: task };
+      }
+      return elem;
+    });
+    this.setState({ todoList: updateTodo });
+  }
+  doneTask(todoId) {
+    const updateTodo = this.state.todoList.map(elem => {
+      if (elem.id === todoId) {
+        return { ...elem, done: !elem.done };
       }
       return elem;
     });
@@ -50,6 +60,8 @@ class TodoList extends Component {
                 removeTodo={this.removeTodo}
                 editTodo={this.editTodo}
                 edit={elem.edit}
+                doneTask={this.doneTask}
+                done={elem.done}
               />
             );
           })}
