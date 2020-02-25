@@ -8,37 +8,43 @@ class Cards extends Component {
   constructor(props) {
     super(props);
     this.state = { cards: [], deck: "" };
-    this.handleClick = this.handleClick.bind(this);
+    this.getCard = this.getCard.bind(this);
     console.log("constructor");
   }
-  componentDidMount() {
-    axios.get("https://deckofcardsapi.com/api/deck/new/shuffle/").then(deck => {
-      this.setState({ deck: deck.data });
-      console.log(deck.data.deck_id);
-    });
+  async componentDidMount() {
+    let deck = await axios.get(
+      "https://deckofcardsapi.com/api/deck/new/shuffle/"
+    );
+    this.setState({ deck: deck.data });
   }
 
-  handleClick() {
-    axios
-      .get(
-        `https://deckofcardsapi.com/api/deck/${this.state.deck.deck_id}/draw/`
-      )
-      .then(card => {
-        this.setState(prevSt => {
-          return { cards: [...prevSt.cards, card.data.cards[0]] };
-        });
+  async getCard() {
+    try {
+      let cardUrl = `https://deckofcardsapi.com/api/deck/${this.state.deck.deck_id}/draw/`;
+
+      let cardRes = await axios.get(cardUrl);
+      if (!cardRes.data.success) {
+        throw new Error("No card remaining");
+      }
+      this.setState(prevSt => {
+        return { cards: [...prevSt.cards, cardRes.data.cards[0]] };
       });
+    } catch (err) {
+      alert(err);
+    }
   }
   render() {
     console.log("render");
     return (
       <div>
-        <button type="button" onClick={this.handleClick}>
+        <button type="button" onClick={this.getCard}>
           Add a new card
         </button>
-        {this.state.cards.map(ele => {
-          return <Card key={ele.code} id={ele.code} />;
-        })}
+        <div className="Cards-area">
+          {this.state.cards.map(ele => {
+            return <Card key={ele.code} id={ele.code} />;
+          })}
+        </div>
       </div>
     );
   }

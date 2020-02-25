@@ -6,14 +6,18 @@ class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {};
+    let xPos = Math.random() * 40 - 20;
+    let yPos = Math.random() * 40 - 20;
+    let rot = Math.random() * 90 - 45;
+    this._transform = `translate(${xPos}px,${yPos}px) rotate(${rot}deg)`;
   }
   render() {
     return (
-      <div>
-        <img
-          src={`https://deckofcardsapi.com/static/img/${this.props.id}.png`}
-        />
-      </div>
+      <img
+        className="Card"
+        style={{ transform: this._transform }}
+        src={`https://deckofcardsapi.com/static/img/${this.props.id}.png`}
+      />
     );
   }
 }
