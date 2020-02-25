@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Card.css";
+import Axios from "axios";
 
 class Card extends Component {
   constructor(props) {
@@ -7,7 +8,13 @@ class Card extends Component {
     this.state = {};
   }
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <img
+          src={`https://deckofcardsapi.com/static/img/${this.props.id}.png`}
+        />
+      </div>
+    );
   }
 }
 
