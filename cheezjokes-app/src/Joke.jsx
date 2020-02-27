@@ -7,6 +7,17 @@ class Jokes extends Component {
     this.state = {};
   }
   render() {
+    const color = vote => {
+      if (vote <= 0) {
+        return { border: "red 2px solid" };
+      } else if (vote <= 3) {
+        return { border: "orange 2px solid" };
+      } else if (vote <= 6) {
+        return { border: "yellow 2px solid" };
+      } else if (vote <= 9) {
+        return { border: "lightgreen 2px solid" };
+      }
+    };
     return (
       <div className="Joke">
         <div className="Joke-button">
@@ -16,7 +27,7 @@ class Jokes extends Component {
             className="up-button Joke-button-vote"
             onClick={this.props.upVote}
           />
-          <div>
+          <div style={color(this.props.votes)}>
             <p>{this.props.votes}</p>
           </div>
           <img

@@ -11,10 +11,19 @@ class JokesList extends Component {
 
   constructor(props) {
     super(props);
-    this.state = { jokes: [] };
+    this.state = {
+      jokes: JSON.parse(window.localStorage.getItem("jokes") || "[]")
+    };
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  async componentDidMount() {
+  componentDidMount() {
+    if (this.state.jokes.length === 0) {
+      this.getJokes();
+    }
+  }
+
+  async getJokes() {
     let jokes = [];
     while (jokes.length < this.props.numOfJokes) {
       let res = await Axios.get("https://icanhazdadjoke.com/", {
@@ -22,18 +31,27 @@ class JokesList extends Component {
       });
       jokes.push({ id: uuid(), joke: res.data.joke, votes: 0 });
     }
-    this.setState(prevSt => ({
-      jokes: [...jokes]
-    }));
-    console.log(jokes);
+    this.setState(
+      st => ({ jokes: [...st.jokes, ...jokes] }),
+      () =>
+        window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
+    );
   }
 
   handleVote(id, delta) {
-    this.setState(st => ({
-      jokes: st.jokes.map(j => {
-        return j.id === id ? { ...j, votes: j.votes + delta } : j;
-      })
-    }));
+    this.setState(
+      st => ({
+        jokes: st.jokes.map(j => {
+          return j.id === id ? { ...j, votes: j.votes + delta } : j;
+        })
+      }),
+      () =>
+        window.localStorage.setItem("jokes", JSON.stringify(this.state.jokes))
+    );
+  }
+
+  handleClick() {
+    this.getJokes();
   }
 
   render() {
@@ -47,7 +65,9 @@ class JokesList extends Component {
             src="https://img.icons8.com/emoji/96/000000/rolling-on-the-floor-laughing.png"
             alt="Emoji"
           />
-          <button className="JokeList-moreJoke">New Jokes</button>
+          <button className="JokeList-moreJoke" onClick={this.handleClick}>
+            New Jokes
+          </button>
         </div>
         <div className="JokeList-joke">
           {this.state.jokes.map(ele => {
