@@ -1,5 +1,5 @@
-.up {
-  transform: rotate(180deg);
+.up-button {
+  transform: translateY(11px) rotate(180deg) !important;
 }
 .Joke-button {
   width: 20%;
@@ -11,6 +11,8 @@
   width: 50px;
   border-radius: 50%;
   border: #7e57e2 2px solid;
+  box-shadow: 0 12px 9px rgba(0, 0, 0, 0.3);
+  margin: 0 7px;
 }
 .Joke-button-vote {
   width: 30px;
@@ -21,7 +23,7 @@
   border: darkgray 1px solid;
 
   display: flex;
-  padding: 20px 5px;
+  padding: 20px 30px;
 }
 .Joke-text {
   width: 80%;
