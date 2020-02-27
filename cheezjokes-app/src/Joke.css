@@ -1,0 +1,28 @@
+.up {
+  transform: rotate(180deg);
+}
+.Joke-button {
+  width: 20%;
+  display: flex;
+}
+.Joke-button div {
+  text-align: center;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border: #7e57e2 2px solid;
+}
+.Joke-button-vote {
+  width: 30px;
+  height: 30px;
+  transform: translateY(10px);
+}
+.Joke {
+  border: darkgray 1px solid;
+
+  display: flex;
+  padding: 20px 5px;
+}
+.Joke-text {
+  width: 80%;
+}
