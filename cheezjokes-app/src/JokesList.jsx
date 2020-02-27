@@ -8,10 +8,12 @@ class JokesList extends Component {
   static defaultProps = {
     numOfJokes: 10
   };
+
   constructor(props) {
     super(props);
     this.state = { jokes: [] };
   }
+
   async componentDidMount() {
     let jokes = [];
     while (jokes.length < this.props.numOfJokes) {
@@ -25,6 +27,15 @@ class JokesList extends Component {
     }));
     console.log(jokes);
   }
+
+  handleVote(id, delta) {
+    this.setState(st => ({
+      jokes: st.jokes.map(j => {
+        return j.id === id ? { ...j, votes: j.votes + delta } : j;
+      })
+    }));
+  }
+
   render() {
     return (
       <div className="JokeList">
@@ -40,7 +51,15 @@ class JokesList extends Component {
         </div>
         <div className="JokeList-joke">
           {this.state.jokes.map(ele => {
-            return <Joke joke={ele.joke} votes={ele.votes} />;
+            return (
+              <Joke
+                key={ele.id}
+                joke={ele.joke}
+                votes={ele.votes}
+                upVote={() => this.handleVote(ele.id, 1)}
+                downVote={() => this.handleVote(ele.id, -1)}
+              />
+            );
           })}
         </div>
       </div>

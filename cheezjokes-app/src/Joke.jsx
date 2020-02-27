@@ -13,7 +13,8 @@ class Jokes extends Component {
           <img
             src="https://img.icons8.com/windows/32/000000/circled-chevron-down--v1.png"
             alt="Up vote"
-            className="Joke-button-vote up"
+            className="up-button Joke-button-vote"
+            onClick={this.props.upVote}
           />
           <div>
             <p>{this.props.votes}</p>
@@ -22,6 +23,7 @@ class Jokes extends Component {
             src="https://img.icons8.com/windows/32/000000/circled-chevron-down--v1.png"
             alt="Down Vote"
             className="Joke-button-vote down"
+            onClick={this.props.downVote}
           />
         </div>
         <div className="Joke-text">

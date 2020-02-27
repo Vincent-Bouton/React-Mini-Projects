@@ -1,5 +1,5 @@
-.up {
-  transform: rotate(180deg);
+.up-button {
+  transform: translateY(11px) rotate(180deg) !important;
 }
 .Joke-button {
   width: 20%;
