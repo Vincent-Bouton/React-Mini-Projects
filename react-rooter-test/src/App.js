@@ -9,9 +9,9 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <Route path="/contact" component={Contact} />
-      <Route path="/About" component={About} />
-      <Route path="/Home" component={Home} />
+      <Route exact path="/contact" component={Contact} />
+      <Route exact path="/About" component={About} />
+      <Route exact path="/" component={Home} />
     </div>
   );
 }
