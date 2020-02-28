@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import NewboxForm from "./NewBoxForm";
+import NewboxForm from "./NewBoxForm.jsx";
 import Box from "./Box";
 import uuid from "uuid/v4";
 
@@ -33,6 +33,11 @@ class BoxList extends Component {
       <div>
         <h1>HELLO</h1>
         <NewboxForm newBox={this.newBox} />
+        <NewboxForm newBox={this.newBox} />
+        <NewboxForm newBox={this.newBox} />
+        <NewboxForm newBox={this.newBox} />
+        <NewboxForm newBox={this.newBox} />
+
         {this.state.box.map(elem => {
           return (
             <Box
