@@ -1,17 +1,19 @@
-import React, {Component} from 'react';
-import './Home.css'
+import React, { Component } from "react";
+import "./Home.css";
 interface HomeProps {
-  firstName?:string
+  firstName?: string;
 }
 class Home extends Component {
-  constructor(props:HomeProps) {
+  constructor(props: HomeProps) {
     super(props);
-    this.state = {}
+    this.state = {};
   }
 
   render() {
     return (
-      <div></div>
+      <div>
+        <h1>HOME</h1>
+      </div>
     );
   }
 }
