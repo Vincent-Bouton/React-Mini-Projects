@@ -1,0 +1,19 @@
+.Header {
+  width: 100%;
+  height: 10vh;
+  background-color: #282c34;
+}
+.Header-nav {
+  width: 25vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-evenly;
+}
+a {
+  text-decoration: none;
+  color: aliceblue;
+}
+.activeNav {
+  transition: 0.3s ease-in-out;
+  border-bottom: aliceblue 2px solid;
+}
