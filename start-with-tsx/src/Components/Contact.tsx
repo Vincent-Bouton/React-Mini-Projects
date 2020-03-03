@@ -22,7 +22,7 @@ class Contact extends React.Component<ContactProps, ContactState> {
           firstName={firstName}
           handleChange={this.handleChange}
         />
-        <p>Hi my name is : {this.state.firstName}</p>
+        <p>Hi my name is : {firstName}</p>
       </div>
     );
   }
